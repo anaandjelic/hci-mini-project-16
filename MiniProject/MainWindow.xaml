@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniProject" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="StockMarket" Height="450" Width="800">
+        Title="StockMarket" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -17,21 +17,29 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
+            
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+
             <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+
             <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+
             <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+
             <ColumnDefinition Width="0.2*"/>
         </Grid.ColumnDefinitions>
 
-        <lvc:CartesianChart Series="{Binding Path=lineChart.seriesCollection}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Margin="5">
+        <lvc:CartesianChart Series="{Binding Path=lineChart.seriesCollection}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5">
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis Title="Value"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
@@ -46,27 +54,21 @@
             </lvc:CartesianChart.AxisX>
         </lvc:CartesianChart>
 
-        <Label Content="Start date:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"/>
-        <DatePicker Name="StartDate" Grid.Column="3" Grid.Row="2"  Margin="5"/>
+        <Label Content="From" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <ComboBox Name="FromCurrency" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="2"/>
 
-        <Label Content="From currency:" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Right"/>
-        <ComboBox Name="FromCurrency" Grid.Column="7" Grid.Row="2"  Margin="5"/>
-        <Label Content="Interval:" Grid.Column="9" Grid.Row="2" HorizontalAlignment="Right"/>
-        <ComboBox Name="IntervalType" Grid.Column="11" Grid.Row="2" Margin="5"/>
+        <Label Content="To" Grid.Column="4" Grid.Row="3"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <ComboBox Name="ToCurrency" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"/>
 
+        <Label Content="Interval" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <ComboBox Name="IntervalType" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2"/>
 
-        <Label Content="End date:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right"/>
-        <DatePicker Name="EndDate" Grid.Column="3" Grid.Row="3" Margin="5"/>
-
-        <Label Content="To currency:" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right"/>
-        <ComboBox Name="ToCurrency" Grid.Column="7" Grid.Row="3" Margin="5"/>
-
-        <Button Name="AddBtn" Grid.Column="11" Grid.Row="3" Margin="5">Add</Button>
+        <Label Content="Attribute" Grid.Column="10" Grid.Row="3" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <ComboBox Name="Attribute" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2"/>
 
 
-        <Label Content="Currency:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right"/>
-        <ComboBox Name="Currency" Grid.Column="5" Grid.Row="4" Margin="5"/>
-        <Button Name="RemoveBtn" Grid.Column="7" Grid.Row="4" Margin="5">Remove</Button>
-        <Button Name="TableBtn" Grid.Column="9" Grid.Row="4" Margin="5">Show Table</Button>
+        <Button Name="AddBtn" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Margin="100, 0, 0, 0">Add</Button>
+        <Button Name="RemoveBtn" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Margin="50, 0">Clear</Button>
+        <Button Name="TableBtn" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="3" Margin="0, 0, 100, 0">Show Table</Button>
     </Grid>
 </Window>

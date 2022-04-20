@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveCharts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,7 @@ namespace MiniProject
             InitializeComponent();
             List<String> intervals = new List<String>();
             List<String> currencies = new List<String>();
+            List<String> attributes = new List<string>();
 
             intervals.Add("Daily");
             intervals.Add("Weekly");
@@ -40,12 +42,43 @@ namespace MiniProject
             currencies.Add("RSD");
             currencies.Add("GBP");
             currencies.Add("USD");
-            Currency.ItemsSource = currencies;
-            Currency.SelectedIndex = 0;
             FromCurrency.ItemsSource = currencies;
             FromCurrency.SelectedIndex = 0;
             ToCurrency.ItemsSource = currencies;
             ToCurrency.SelectedIndex = 0;
+
+            attributes.Add("Open");
+            attributes.Add("Close");
+            attributes.Add("Min");
+            attributes.Add("Max");
+            Attribute.ItemsSource = attributes;
+            Attribute.SelectedIndex = 0;
         }
+        /*
+        private void lineChartInit()
+        {
+
+            SeriesCollection = new SeriesCollection
+        {
+            new LineSeries
+            {
+                Title = "Avg Speed (KM/H)",
+                Values = arrayspeedavg.AsChartValues()
+            },
+            new LineSeries
+            {
+                Title = "Avg Gap (Metre)",
+                Values = arraygapavg.AsChartValues()
+            },
+
+        };
+
+            Labels = datearray;
+            YFormatter = value => value.ToString("");
+
+            DataContext = this;
+            cartchartdb.Update(true);
+        }*/
+
     }
 }
