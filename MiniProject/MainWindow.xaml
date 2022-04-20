@@ -1,0 +1,72 @@
+﻿<Window x:Class="MiniProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiniProject" xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        mc:Ignorable="d"
+        Title="StockMarket" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.2*"/>
+        </Grid.ColumnDefinitions>
+
+        <lvc:CartesianChart Series="{Binding Path=lineChart.seriesCollection}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5" Margin="5">
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Title="Value"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Title="Date" Labels="{Binding Path=lineChart.dates}"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
+
+        <lvc:CartesianChart Series="{Binding SeriesCollection}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="5">
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis Labels="{Binding Labels}"/>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
+
+        <Label Content="Start date:" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right"/>
+        <DatePicker Name="StartDate" Grid.Column="3" Grid.Row="2"  Margin="5"/>
+
+        <Label Content="From currency:" Grid.Column="5" Grid.Row="2" HorizontalAlignment="Right"/>
+        <ComboBox Name="FromCurrency" Grid.Column="7" Grid.Row="2"  Margin="5"/>
+        <Label Content="Interval:" Grid.Column="9" Grid.Row="2" HorizontalAlignment="Right"/>
+        <ComboBox Name="IntervalType" Grid.Column="11" Grid.Row="2" Margin="5"/>
+
+
+        <Label Content="End date:" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right"/>
+        <DatePicker Name="EndDate" Grid.Column="3" Grid.Row="3" Margin="5"/>
+
+        <Label Content="To currency:" Grid.Column="5" Grid.Row="3" HorizontalAlignment="Right"/>
+        <ComboBox Name="ToCurrency" Grid.Column="7" Grid.Row="3" Margin="5"/>
+
+        <Button Name="AddBtn" Grid.Column="11" Grid.Row="3" Margin="5">Add</Button>
+
+
+        <Label Content="Currency:" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Right"/>
+        <ComboBox Name="Currency" Grid.Column="5" Grid.Row="4" Margin="5"/>
+        <Button Name="RemoveBtn" Grid.Column="7" Grid.Row="4" Margin="5">Remove</Button>
+        <Button Name="TableBtn" Grid.Column="9" Grid.Row="4" Margin="5">Show Table</Button>
+    </Grid>
+</Window>
