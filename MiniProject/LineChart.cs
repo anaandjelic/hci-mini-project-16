@@ -12,6 +12,8 @@ namespace MiniProject
 {
     public partial class LineChart : UserControl
     {
+        private DataFetcher data = new DataFetcher();
+
         private Dictionary<string, string> IntervalToQuery = new Dictionary<string, string>
         {
             { "1min", "FX_INTRADAY" },
@@ -65,26 +67,12 @@ namespace MiniProject
 
         }
 
-        private List<Data> GetData(string from, string to, string interval, string attribute)
+        private List<DataPoint> GetData(string firstCurrency, string secondCurrency, string interval, string attribute)
         {
-            string URL;
-            if (IntervalToQuery[interval] == "FX_INTRADAY")
-                URL = $"https://www.alphavantage.co/query?function=FX_INTRADAY&from_symbol={from}&to_symbol={to}&interval={interval}&apikey=WL89MZB055ONIRRM";
-            else
-                URL = $"https://www.alphavantage.co/query?function={IntervalToQuery[interval]}&from_symbol={from}&to_symbol={to}&apikey=WL89MZB055ONIRRM";
+            // You might not need this wrapper function but I kept it to keep track of changes.
 
-            Uri queryUri = new Uri(URL);
 
-            using (WebClient client = new WebClient())
-            {
-                // https://devblogs.microsoft.com/dotnet/try-the-new-system-text-json-apis/
-
-                dynamic json_data = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(client.DownloadString(queryUri));
-
-                
-            }
-
-            return null;
+            return data.FetchData(firstCurrency, secondCurrency, interval);
         }
     }
 }
