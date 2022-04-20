@@ -22,6 +22,8 @@ namespace MiniProject
 
     public partial class MainWindow : Window
     {
+        public LineChart lineChart { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -32,7 +34,11 @@ namespace MiniProject
             intervals.Add("Daily");
             intervals.Add("Weekly");
             intervals.Add("Monthly");
-            intervals.Add("Intraday");
+            intervals.Add("1min");
+            intervals.Add("5min");
+            intervals.Add("15min");
+            intervals.Add("30min");
+            intervals.Add("60min");
             IntervalType.ItemsSource = intervals;
             IntervalType.SelectedIndex = 0;
 
@@ -53,32 +59,10 @@ namespace MiniProject
             attributes.Add("Max");
             Attribute.ItemsSource = attributes;
             Attribute.SelectedIndex = 0;
-        }
-        /*
-        private void lineChartInit()
-        {
 
-            SeriesCollection = new SeriesCollection
-        {
-            new LineSeries
-            {
-                Title = "Avg Speed (KM/H)",
-                Values = arrayspeedavg.AsChartValues()
-            },
-            new LineSeries
-            {
-                Title = "Avg Gap (Metre)",
-                Values = arraygapavg.AsChartValues()
-            },
-
-        };
-
-            Labels = datearray;
-            YFormatter = value => value.ToString("");
-
+            lineChart = new LineChart();
             DataContext = this;
-            cartchartdb.Update(true);
-        }*/
+        }
 
     }
 }
