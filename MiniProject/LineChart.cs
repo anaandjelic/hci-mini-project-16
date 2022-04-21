@@ -12,8 +12,6 @@ namespace MiniProject
 {
     public partial class LineChart : UserControl
     {
-        private DataFetcher data = new DataFetcher();
-
         private Dictionary<string, string> IntervalToQuery = new Dictionary<string, string>
         {
             { "1min", "FX_INTRADAY" },
@@ -72,7 +70,7 @@ namespace MiniProject
             // You might not need this wrapper function but I kept it to keep track of changes.
 
 
-            return data.FetchData(firstCurrency, secondCurrency, interval);
+            return DataFetcher.FetchData(firstCurrency, secondCurrency, interval);
         }
     }
 }

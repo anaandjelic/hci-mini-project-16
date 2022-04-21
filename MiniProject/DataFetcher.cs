@@ -12,15 +12,15 @@ namespace MiniProject
     /// </summary>
     class DataFetcher
     {
-        private string _apiKey = "HB6SFOGKJEOCRMWM";
+        private static string _apiKey = "HB6SFOGKJEOCRMWM";
 
-        public DataFetcher() { }
+        private static Dictionary<string, List<DataPoint>> _cachedData = new Dictionary<string, List<DataPoint>>();
 
         /// <summary>
         /// firstCurrency and secondCurrency: three-letter symbol from the list specified in the API docs
         /// interval:  "1min", "5min", "15min", "30min", "60min", "daily", "weekly" or "monthly"
         /// </summary>
-        public List<DataPoint> FetchData(string firstCurrency, string secondCurrency, string interval)
+        public static List<DataPoint> FetchData(string firstCurrency, string secondCurrency, string interval)
         {
             string queryUrlString;
             string dateTimeFormat;
@@ -35,6 +35,9 @@ namespace MiniProject
                 queryUrlString = $"https://www.alphavantage.co/query?function=FX_{interval.ToUpper()}&from_symbol={firstCurrency}&to_symbol={secondCurrency}&datatype=csv&apikey={_apiKey}";
                 dateTimeFormat = "yyyy-MM-d";
             }
+
+            if (_cachedData.ContainsKey(queryUrlString))
+                return _cachedData[queryUrlString];
             
             using (WebClient client = new WebClient())
             {
@@ -58,8 +61,14 @@ namespace MiniProject
                     });
                 }
 
+                _cachedData.Add(queryUrlString, dataPoints);
                 return dataPoints;
             }
+        }
+
+        public static void Flush()
+        {
+            _cachedData.Clear();
         }
     }
 }
