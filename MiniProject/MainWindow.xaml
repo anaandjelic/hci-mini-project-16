@@ -41,12 +41,12 @@
         </Grid.ColumnDefinitions>
 
         <lvc:CartesianChart Series="{Binding Path=lineChart.SeriesCollection}" LegendLocation="Right" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="5">
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Sales" LabelFormatter="{Binding Path=lineChart.YFormatter}"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
             <lvc:CartesianChart.AxisX>
-                <lvc:Axis Title="Month" Labels="{Binding Path=lineChart.Labels}"></lvc:Axis>
+                <lvc:Axis Name="XAxis" Title="Time" Labels="{Binding Path=lineChart.XLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis Name="YAxis" Title="Value" LabelFormatter="{Binding Path=lineChart.YLabels}"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
         <lvc:CartesianChart Series="{Binding Collection}" Grid.Row="1" Grid.Column="7" Grid.ColumnSpan="5">
@@ -68,8 +68,8 @@
         <ComboBox Name="Attribute" Grid.Column="10" Grid.Row="2" Grid.ColumnSpan="2"/>
 
 
-        <Button Name="AddBtn" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Margin="100, 0, 0, 0">Add</Button>
-        <Button Name="RemoveBtn" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Margin="50, 0">Clear</Button>
-        <Button Name="TableBtn" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="3" Margin="0, 0, 100, 0">Show Table</Button>
+        <Button Name="AddBtn" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3" Margin="100, 0, 0, 0" Click="AddButtonClick">Add</Button>
+        <Button Name="ClearBtn" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="3" Margin="50, 0" Click="ClearButtonClick">Clear</Button>
+        <Button Name="TableBtn" Grid.Column="8" Grid.Row="4" Grid.ColumnSpan="3" Margin="0, 0, 100, 0" Click="TableButtonClick">Show Table</Button>
     </Grid>
 </Window>

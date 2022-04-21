@@ -61,7 +61,9 @@ namespace MiniProject
                     });
                 }
 
+                dataPoints.Reverse();
                 _cachedData.Add(queryUrlString, dataPoints);
+
                 return dataPoints;
             }
         }

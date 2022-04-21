@@ -64,5 +64,26 @@ namespace MiniProject
             DataContext = this;
         }
 
+        private void AddButtonClick(object sender, RoutedEventArgs e)
+        {
+            String fromCurrency = FromCurrency.Text;
+            String toCurrency = ToCurrency.Text;
+            String intervalType = IntervalType.Text;
+            String attribute = Attribute.Text;
+
+            lineChart.AddData(fromCurrency, toCurrency, intervalType, attribute);
+            XAxis.Labels = lineChart.XLabels;
+        }
+
+        private void ClearButtonClick(object sender, RoutedEventArgs e)
+        {
+            lineChart.ClearData();
+        }
+
+        private void TableButtonClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }

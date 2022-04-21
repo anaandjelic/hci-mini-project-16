@@ -2,6 +2,7 @@
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -12,65 +13,66 @@ namespace MiniProject
 {
     public partial class LineChart : UserControl
     {
-        private Dictionary<string, string> IntervalToQuery = new Dictionary<string, string>
-        {
-            { "1min", "FX_INTRADAY" },
-            { "5min", "FX_INTRADAY" },
-            { "15min", "FX_INTRADAY" },
-            { "30min", "FX_INTRADAY" },
-            { "60min", "FX_INTRADAY" },
-            { "Daily", "FX_DAILY" },
-            { "Weekly", "FX_WEEKLY" },
-            { "Monthly", "FX_MONTHLY" }
-        };
         public SeriesCollection SeriesCollection { get; set; }
-        public List<string> Labels { get; set; }
-        public Func<double, string> YFormatter { get; set; }
+        public List<string> XLabels { get; set; }
+        public Func<double, string> YLabels { get; set; }
+        public Func<DateTime, string> XFormatter { get; set; }
 
         public LineChart()
         {
-
-            SeriesCollection = new SeriesCollection
-            {
-                new LineSeries
-                {
-                    Title = "Series 1",
-                    Values = new ChartValues<double> { 4, 6, 5, 2 ,4 }
-                },
-                new LineSeries
-                {
-                    Title = "Series 2",
-                    Values = new ChartValues<double> { 6, 7, 3, 4 ,6 },
-                    PointGeometry = null
-                },
-                new LineSeries
-                {
-                    Title = "Series 3",
-                    Values = new ChartValues<double> { 4,2,7,2,7 },
-                    PointGeometry = null
-                }
-            };
-
-            YFormatter = value => value.ToString("C");
+            YLabels = value => value.ToString(".##");
+            SeriesCollection = new SeriesCollection();
+            XLabels = new List<string>();
         }
 
-        public void Clear() 
+        public void ClearData()
         {
-            SeriesCollection.Clear();
-            Labels.Clear();
+            SeriesCollection = new SeriesCollection();
+            XLabels = new List<string>();
         }
 
         public void AddData(string from, string to, string interval, string attribute)
         {
+            var dataPoints = DataFetcher.FetchData(from, to, interval);
+            List<double> values;
+
+            if (attribute == "Open")
+            {
+                values = dataPoints.Select(c => c.Open).ToList();
+            }
+            else if (attribute == "Close")
+            {
+                values = dataPoints.Select(c => c.Close).ToList();
+            }
+            else if (attribute == "High")
+            {
+                values = dataPoints.Select(c => c.High).ToList();
+            }
+            else
+            {
+                values = dataPoints.Select(c => c.Low).ToList();
+            }
+
+            SetLabels(interval, dataPoints);
+
+            SeriesCollection.Add(new LineSeries
+            {
+                Title = $"{from}-{to}",
+                Values = new ChartValues<double>(values),
+                PointGeometry = null,
+                LineSmoothness = 0,
+                Fill = new SolidColorBrush()
+            });
 
         }
 
-        private List<DataPoint> GetData(string firstCurrency, string secondCurrency, string interval, string attribute)
+        private void SetLabels(string interval, List<DataPoint> dataPoints)
         {
-            // You might not need this wrapper function but I kept it to keep track of changes.
-
-
-            return DataFetcher.FetchData(firstCurrency, secondCurrency, interval);
+            if (interval.Contains("min"))
+                XLabels = dataPoints.Select(c => c.TimeStamp.ToString("HH:mm")).ToList();
+            else
+                XLabels = dataPoints.Select(c => c.TimeStamp.ToString("dd.MM.yyyy.")).ToList();
+            Console.WriteLine(XLabels.ToString());
         }
     }
 }
