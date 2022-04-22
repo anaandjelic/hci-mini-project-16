@@ -27,8 +27,8 @@ namespace MiniProject
 
         public void ClearData()
         {
-            SeriesCollection = new SeriesCollection();
-            XLabels = new List<string>();
+            SeriesCollection.Clear();
+            XLabels.Clear();
         }
 
         public void AddData(string from, string to, string interval, string attribute)
@@ -70,8 +70,10 @@ namespace MiniProject
         {
             if (interval.Contains("min"))
                 XLabels = dataPoints.Select(c => c.TimeStamp.ToString("HH:mm")).ToList();
+            else if (interval == "Monthly")
+                XLabels = dataPoints.Select(c => c.TimeStamp.ToString("MMM yyyy.")).ToList();
             else
-                XLabels = dataPoints.Select(c => c.TimeStamp.ToString("dd.MM.yyyy.")).ToList();
+                XLabels = dataPoints.Select(c => c.TimeStamp.ToString("dd.MMM")).ToList();
             Console.WriteLine(XLabels.ToString());
         }
     }
