@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\MiniProject.csproj": {}
+    "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\MiniProject.csproj": {}
   },
   "projects": {
-    "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\MiniProject.csproj": {
+    "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\MiniProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
+        "projectUniqueName": "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
         "projectName": "MiniProject",
-        "projectPath": "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
-        "packagesPath": "C:\\Users\\Ana\\.nuget\\packages\\",
-        "outputPath": "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\obj\\",
+        "projectPath": "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
+        "packagesPath": "C:\\Users\\Aleksa\\.nuget\\packages\\",
+        "outputPath": "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Aleksa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "LiveCharts": {
               "target": "Package",
@@ -67,7 +65,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

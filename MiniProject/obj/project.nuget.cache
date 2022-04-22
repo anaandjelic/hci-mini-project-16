@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SqotUyVWLWwfRx9bj5hefqYeExoA32xUY911UenHWaV4/VbmyexJHjG3VTGdhPUTlQHIVopzfCGqoYyTtAYneg==",
+  "dgSpecHash": "brI2cWoapqMiZEnFVwZG9AFTsSkeXjS69EPYN84TePcey1ZI6a45s2qaTSC75O88mOfb1yFfgj8G8vhqcN2d3A==",
   "success": true,
-  "projectFilePath": "D:\\faks\\Semestar6\\HCI\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
+  "projectFilePath": "E:\\Desktop\\HCI mini projekat\\hci-mini-project-16\\MiniProject\\MiniProject.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Ana\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
-    "C:\\Users\\Ana\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512"
+    "C:\\Users\\Aleksa\\.nuget\\packages\\livecharts\\0.9.7\\livecharts.0.9.7.nupkg.sha512",
+    "C:\\Users\\Aleksa\\.nuget\\packages\\livecharts.wpf\\0.9.7\\livecharts.wpf.0.9.7.nupkg.sha512"
   ],
   "logs": [
     {

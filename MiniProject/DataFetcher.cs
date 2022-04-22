@@ -12,7 +12,8 @@ namespace MiniProject
     /// </summary>
     class DataFetcher
     {
-        private static string _apiKey = "HB6SFOGKJEOCRMWM";
+        //private static string _apiKey = "HB6SFOGKJEOCRMWM";
+        private static string _apiKey = "1JDD8ANJY6ERMK2G";
 
         private static Dictionary<string, List<DataPoint>> _cachedData = new Dictionary<string, List<DataPoint>>();
 

@@ -21,3 +21,27 @@ D:\faks\Semestar6\HCI\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\Mi
 D:\faks\Semestar6\HCI\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\LiveCharts.dll
 D:\faks\Semestar6\HCI\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\LiveCharts.Wpf.dll
 D:\faks\Semestar6\HCI\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.csproj.CopyComplete
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.csprojAssemblyReference.cache
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\TableWindow.g.cs
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\App.g.cs
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject_MarkupCompile.cache
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject_MarkupCompile.lref
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.dll
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.pdb
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.exe
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.deps.json
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.runtimeconfig.json
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.runtimeconfig.dev.json
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.dll
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\MiniProject.pdb
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\LiveCharts.dll
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\bin\Debug\netcoreapp3.1\LiveCharts.Wpf.dll
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MainWindow.baml
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\TableWindow.baml
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.g.resources
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.AssemblyInfoInputs.cache
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.AssemblyInfo.cs
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.csproj.CoreCompileInputs.cache
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.csproj.CopyComplete
+E:\Desktop\HCI mini projekat\hci-mini-project-16\MiniProject\obj\Debug\netcoreapp3.1\MiniProject.genruntimeconfig.cache

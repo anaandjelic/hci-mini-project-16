@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MiniProject" 
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="StockMarket" Height="600" Width="1000">
+        Title="StockMarket" Height="600" Width="1000" Icon="/ikonica.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>

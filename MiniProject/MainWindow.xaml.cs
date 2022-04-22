@@ -25,6 +25,10 @@ namespace MiniProject
     {
         public LineChart lineChart { get; set; }
 
+        private List<string> currenciesData1 = new List<string>();
+        private List<string> currenciesData2 = new List<string>();
+        private List<string> intervalsData = new List<string>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,16 +47,25 @@ namespace MiniProject
 
             lineChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
             XAxis.Labels = lineChart.XLabels;
+
+            currenciesData1.Add(FromCurrency.SelectedItem.ToString());
+            currenciesData2.Add(ToCurrency.SelectedItem.ToString());
+            intervalsData.Add(IntervalType.SelectedItem.ToString());
         }
 
         private void ClearButtonClick(object sender, RoutedEventArgs e)
         {
             lineChart.ClearData();
+
+            currenciesData1.Clear();
+            currenciesData2.Clear();
+            intervalsData.Clear();
         }
 
         private void TableButtonClick(object sender, RoutedEventArgs e)
         {
-
+            TableWindow tableWindow = new TableWindow(currenciesData1, currenciesData2, intervalsData); // proslediti kao parametre liste
+            tableWindow.Show();
         }
 
         private void InitializeComboboxes()
