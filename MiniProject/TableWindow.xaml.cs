@@ -17,23 +17,12 @@ namespace MiniProject
     /// </summary>
     public partial class TableWindow : Window
     {
-        // preuzimanje podataka sa api-a
-        private DataFetcher data = new DataFetcher();
-        private List<string> firstCurrencys;
-        private List<string> secondCurrencys;
-        private List<string> intervals;
 
-        public TableWindow(List<string> currenciesData1, List<string> currenciesData2, List<string> intervalsData)
+        public TableWindow()
         {
             InitializeComponent();
-            firstCurrencys = new List<string>(currenciesData1);
-            secondCurrencys = new List<string>(currenciesData2);
-            intervals = new List<string>(intervalsData);
-            // popunjavanje comboboxa
-            for(int i=0;i<firstCurrencys.Count;i++)
-            {
-                currenciePairesCB.Items.Add(firstCurrencys[i] + " >>>>>> " + secondCurrencys[i] + " >>>>>> " + intervals[i]);
-            }
+
+            currenciePairesCB.ItemsSource = DataFetcher.GetCacheKeys();
         }
 
         private void currenciePairesCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,7 +30,10 @@ namespace MiniProject
             // kada se u cb vrsi izbor valuta, mi kupimo te podatke i ovde ih kreiramo oodnosno postavljamo
             // currenciePairesCB.SelectedIndex dobijamo index selektovanog s njim mozemo da pristupimo svim ostalim podacima na istom indexu zato sto ih dodajemo u isto vreme
             dataTable.Items.Clear();
-            List<DataPoint> dataTableValues = fetchData(firstCurrencys[currenciePairesCB.SelectedIndex], secondCurrencys[currenciePairesCB.SelectedIndex], intervals[currenciePairesCB.SelectedIndex]);
+            string selectedValue = currenciePairesCB.SelectedValue.ToString();
+            string[] arguments = selectedValue.Split("-");
+
+            List<DataPoint> dataTableValues = DataFetcher.FetchData(arguments[0].Trim(), arguments[1].Trim(), arguments[2].Trim());
             foreach (DataPoint dataPoint in dataTableValues)
             {
                 dataTable.Items.Add(dataPoint);
@@ -49,11 +41,15 @@ namespace MiniProject
 
         }
 
-        private List<DataPoint> fetchData(string firstCurrency, string secondCurrency, string interval)
+
+        public void Clear()
         {
-            //return data.FetchData(firstCurrency, secondCurrency, interval);
-            //podaci iz apija koje pribavljam
-            return DataFetcher.FetchData(firstCurrency.Substring(0,3), secondCurrency.Substring(0, 3), interval);
+            // TODO: Clear comboboxes and empty table
+        }
+
+        public void AddOption()
+        {
+            // TODO: Implement adding options 
         }
     }
 }

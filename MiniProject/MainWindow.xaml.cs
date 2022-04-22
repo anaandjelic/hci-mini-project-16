@@ -21,13 +21,14 @@ namespace MiniProject
     /// Interaction logic for MainWindow.xaml
     /// </summary>
 
+    public delegate void ClearData();
+    public delegate void AddData();
+
     public partial class MainWindow : Window
     {
         public LineChart lineChart { get; set; }
-
-        private List<string> currenciesData1 = new List<string>();
-        private List<string> currenciesData2 = new List<string>();
-        private List<string> intervalsData = new List<string>();
+        public event ClearData ClearEvent;
+        public event AddData AddEvent;
 
         public MainWindow()
         {
@@ -35,37 +36,35 @@ namespace MiniProject
             InitializeComboboxes();
 
             lineChart = new LineChart();
+            ClearEvent += lineChart.Clear;
+            ClearEvent += DataFetcher.Flush;
+
             DataContext = this;
         }
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            String fromCurrency = FromCurrency.Text;
-            String toCurrency = ToCurrency.Text;
+            String fromCurrency = FromCurrency.Text.Substring(0, 3);
+            String toCurrency = ToCurrency.Text.Substring(0,3);
             String intervalType = IntervalType.Text;
             String attribute = Attribute.Text;
 
             lineChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
             XAxis.Labels = lineChart.XLabels;
-
-            currenciesData1.Add(FromCurrency.SelectedItem.ToString());
-            currenciesData2.Add(ToCurrency.SelectedItem.ToString());
-            intervalsData.Add(IntervalType.SelectedItem.ToString());
+            AddEvent?.Invoke();
         }
 
         private void ClearButtonClick(object sender, RoutedEventArgs e)
         {
-            lineChart.ClearData();
-
-            currenciesData1.Clear();
-            currenciesData2.Clear();
-            intervalsData.Clear();
+            ClearEvent?.Invoke();
         }
 
         private void TableButtonClick(object sender, RoutedEventArgs e)
         {
-            TableWindow tableWindow = new TableWindow(currenciesData1, currenciesData2, intervalsData); // proslediti kao parametre liste
+            TableWindow tableWindow = new TableWindow();
             tableWindow.Show();
+            ClearEvent += tableWindow.Clear;
+            AddEvent += tableWindow.AddOption;
         }
 
         private void InitializeComboboxes()

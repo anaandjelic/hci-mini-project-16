@@ -23,6 +23,7 @@ namespace MiniProject
         /// </summary>
         public static List<DataPoint> FetchData(string firstCurrency, string secondCurrency, string interval)
         {
+            string cachedDataKey = $"{firstCurrency} - {secondCurrency} - {interval}";
             string queryUrlString;
             string dateTimeFormat;
 
@@ -37,8 +38,8 @@ namespace MiniProject
                 dateTimeFormat = "yyyy-MM-d";
             }
 
-            if (_cachedData.ContainsKey(queryUrlString))
-                return _cachedData[queryUrlString];
+            if (_cachedData.ContainsKey(cachedDataKey))
+                return _cachedData[cachedDataKey];
             
             using (WebClient client = new WebClient())
             {
@@ -63,7 +64,7 @@ namespace MiniProject
                 }
 
                 dataPoints.Reverse();
-                _cachedData.Add(queryUrlString, dataPoints);
+                _cachedData.Add(cachedDataKey, dataPoints);
 
                 return dataPoints;
             }
@@ -72,6 +73,11 @@ namespace MiniProject
         public static void Flush()
         {
             _cachedData.Clear();
+        }
+
+        public static List<string> GetCacheKeys()
+        {
+            return _cachedData.Keys.ToList();
         }
     }
 }

@@ -25,7 +25,7 @@ namespace MiniProject
             XLabels = new List<string>();
         }
 
-        public void ClearData()
+        public void Clear()
         {
             SeriesCollection.Clear();
             XLabels.Clear();
