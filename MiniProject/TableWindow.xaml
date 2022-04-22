@@ -10,7 +10,7 @@
     <Grid>
         <StackPanel>
             <Label Height="30" Width="164" HorizontalAlignment="Center" FontSize="13" FontWeight="DemiBold">Choose pair of currencies:</Label>
-            <ComboBox x:Name="currenciePairesCB" Width="573" Height="23" SelectionChanged="currenciePairesCB_SelectionChanged"/>
+            <ComboBox x:Name="currenciePairesCB" Width="184" Height="23" SelectionChanged="currenciePairesCB_SelectionChanged"/>
             <Label></Label>
             <DataGrid x:Name="dataTable" Height="411" Width="960" CanUserResizeRows="False" CanUserResizeColumns="False">
                 <!--Stil hedinga-->

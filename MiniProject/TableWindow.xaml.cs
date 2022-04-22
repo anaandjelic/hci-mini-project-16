@@ -27,29 +27,29 @@ namespace MiniProject
 
         private void currenciePairesCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // kada se u cb vrsi izbor valuta, mi kupimo te podatke i ovde ih kreiramo oodnosno postavljamo
-            // currenciePairesCB.SelectedIndex dobijamo index selektovanog s njim mozemo da pristupimo svim ostalim podacima na istom indexu zato sto ih dodajemo u isto vreme
             dataTable.Items.Clear();
-            string selectedValue = currenciePairesCB.SelectedValue.ToString();
-            string[] arguments = selectedValue.Split("-");
-
-            List<DataPoint> dataTableValues = DataFetcher.FetchData(arguments[0].Trim(), arguments[1].Trim(), arguments[2].Trim());
-            foreach (DataPoint dataPoint in dataTableValues)
+            if (currenciePairesCB.ItemsSource != null)
             {
-                dataTable.Items.Add(dataPoint);
-            }
+                string selectedValue = currenciePairesCB.SelectedValue.ToString();
+                string[] arguments = selectedValue.Split("-");
 
+                List<DataPoint> dataTableValues = DataFetcher.FetchData(arguments[0].Trim(), arguments[1].Trim(), arguments[2].Trim());
+                foreach (DataPoint dataPoint in dataTableValues)
+                {
+                    dataTable.Items.Add(dataPoint);
+                }
+            }
         }
 
 
         public void Clear()
         {
-            // TODO: Clear comboboxes and empty table
+            currenciePairesCB.ItemsSource = null;
         }
 
         public void AddOption()
         {
-            // TODO: Implement adding options 
+            currenciePairesCB.ItemsSource = DataFetcher.GetCacheKeys();
         }
     }
 }
