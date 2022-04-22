@@ -56,10 +56,10 @@
         </lvc:CartesianChart>
 
         <Label Content="From" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
-        <ComboBox Name="FromCurrency" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="2"/>
+        <ComboBox Name="FromCurrency" Grid.Column="1" Grid.Row="2"  Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True"/>
 
         <Label Content="To" Grid.Column="4" Grid.Row="3"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
-        <ComboBox Name="ToCurrency" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"/>
+        <ComboBox Name="ToCurrency" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True"/>
 
         <Label Content="Interval" Grid.Column="7" Grid.Row="3" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
         <ComboBox Name="IntervalType" Grid.Column="7" Grid.Row="2" Grid.ColumnSpan="2"/>

@@ -1,6 +1,7 @@
 ﻿using LiveCharts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,38 +28,7 @@ namespace MiniProject
         public MainWindow()
         {
             InitializeComponent();
-            List<String> intervals = new List<String>();
-            List<String> currencies = new List<String>();
-            List<String> attributes = new List<string>();
-
-            intervals.Add("Daily");
-            intervals.Add("Weekly");
-            intervals.Add("Monthly");
-            intervals.Add("1min");
-            intervals.Add("5min");
-            intervals.Add("15min");
-            intervals.Add("30min");
-            intervals.Add("60min");
-            IntervalType.ItemsSource = intervals;
-            IntervalType.SelectedIndex = 0;
-
-            // TODO: Load actual currencies and add them to the comboboxes
-            currencies.Add("EUR");
-            currencies.Add("AUD");
-            currencies.Add("RSD");
-            currencies.Add("GBP");
-            currencies.Add("USD");
-            FromCurrency.ItemsSource = currencies;
-            FromCurrency.SelectedIndex = 0;
-            ToCurrency.ItemsSource = currencies;
-            ToCurrency.SelectedIndex = 0;
-
-            attributes.Add("Open");
-            attributes.Add("Close");
-            attributes.Add("Min");
-            attributes.Add("Max");
-            Attribute.ItemsSource = attributes;
-            Attribute.SelectedIndex = 0;
+            InitializeComboboxes();
 
             lineChart = new LineChart();
             DataContext = this;
@@ -71,7 +41,7 @@ namespace MiniProject
             String intervalType = IntervalType.Text;
             String attribute = Attribute.Text;
 
-            lineChart.AddData(fromCurrency, toCurrency, intervalType, attribute);
+            lineChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
             XAxis.Labels = lineChart.XLabels;
         }
 
@@ -82,8 +52,55 @@ namespace MiniProject
 
         private void TableButtonClick(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
+        private void InitializeComboboxes()
+        {
+            List<String> intervals = new List<String>();
+            List<String> attributes = new List<string>();
+
+            intervals.Add("1min");
+            intervals.Add("5min");
+            intervals.Add("15min");
+            intervals.Add("30min");
+            intervals.Add("60min");
+            intervals.Add("Daily");
+            intervals.Add("Weekly");
+            intervals.Add("Monthly");
+            IntervalType.ItemsSource = intervals;
+            IntervalType.SelectedIndex = 0;
+
+            attributes.Add("Open");
+            attributes.Add("Close");
+            attributes.Add("High");
+            attributes.Add("Low");
+            Attribute.ItemsSource = attributes;
+            Attribute.SelectedIndex = 0;
+
+            LoadCSVData();
+        }
+
+        private void LoadCSVData()
+        {
+            using (var reader = new StreamReader("../../../physical_currency_list.csv"))
+            {
+                List<String> currencies = new List<String>();
+                var line = reader.ReadLine();
+
+                while (!reader.EndOfStream)
+                {
+                    line = reader.ReadLine();
+                    var values = line.Split(',');
+
+                    currencies.Add($"{values[0]} - {values[1]}");
+                }
+
+                FromCurrency.ItemsSource = currencies;
+                FromCurrency.SelectedIndex = 0;
+                ToCurrency.ItemsSource = currencies;
+                ToCurrency.SelectedIndex = 0;
+            }
+        }
     }
 }
