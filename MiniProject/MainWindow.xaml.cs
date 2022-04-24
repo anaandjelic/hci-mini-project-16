@@ -27,6 +27,7 @@ namespace MiniProject
     public partial class MainWindow : Window
     {
         public LineChart lineChart { get; set; }
+        public BarChart barChart { get; set; }
         public event ClearData ClearEvent;
         public event AddData AddEvent;
 
@@ -36,7 +37,9 @@ namespace MiniProject
             InitializeComboboxes();
 
             lineChart = new LineChart();
+            barChart = new BarChart();
             ClearEvent += lineChart.Clear;
+            ClearEvent += barChart.Clear;
             ClearEvent += DataFetcher.Flush;
 
             DataContext = this;
@@ -50,7 +53,9 @@ namespace MiniProject
             String attribute = Attribute.Text;
 
             lineChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
-            XAxis.Labels = lineChart.XLabels;
+            barChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
+            LineXAxis.Labels = lineChart.XLabels;
+            BarXAxis.Labels = barChart.XLabels;
             AddEvent?.Invoke();
         }
 
