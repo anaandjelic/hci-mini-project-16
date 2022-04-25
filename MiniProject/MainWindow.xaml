@@ -64,7 +64,7 @@
             <ColumnDefinition Width="8*"/>
         </Grid.ColumnDefinitions>
 
-        <lvc:CartesianChart Series="{Binding Path=lineChart.SeriesCollection}" LegendLocation="Right" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="5">
+        <lvc:CartesianChart Series="{Binding Path=lineChart.SeriesCollection}" LegendLocation="Right" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="5" Zoom="X" Pan="X">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Name="LineXAxis" Title="Time" Labels="{Binding Path=lineChart.XLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
@@ -73,7 +73,7 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
-        <lvc:CartesianChart Series="{Binding Path=barChart.SeriesCollection}" LegendLocation="Right" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="5">
+        <lvc:CartesianChart Series="{Binding Path=barChart.SeriesCollection}" LegendLocation="Right" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="5" Zoom="X" Pan="X">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis Name="BarXAxis" Title="Time" Labels="{Binding Path=barChart.XLabels}"></lvc:Axis>
             </lvc:CartesianChart.AxisX>
@@ -82,20 +82,20 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
-        <Label Content="From:" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray" Margin="0,417,0,41" Grid.RowSpan="3"/>
+        <Label Content="From:" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray"/>
         <ComboBox Name="FromCurrency" Grid.Column="2" Grid.Row="3"  Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True" Style="{DynamicResource RoundComboBox}" VerticalAlignment="Top"/>
 
-        <Label Content="To:" Grid.Column="5" Grid.Row="1"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray" Margin="0,417,0,41" Grid.RowSpan="3"/>
+        <Label Content="To:" Grid.Column="5" Grid.Row="2"  Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray" />
         <ComboBox Name="ToCurrency" Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True" Style="{DynamicResource RoundComboBox}" VerticalAlignment="Top"/>
 
-        <Label Content="Interval:" Grid.Column="8" Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray" Margin="0,417,0,41" Grid.RowSpan="3"/>
+        <Label Content="Interval:" Grid.Column="8" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray"/>
         <ComboBox Name="IntervalType" Grid.Column="8" Grid.Row="3" Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True" Style="{DynamicResource RoundComboBox}" VerticalAlignment="Top"/>
 
-        <Label Content="Attribute:" Grid.Column="11" Grid.Row="1" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray" Margin="0,417,0,41" Grid.RowSpan="3"/>
+        <Label Content="Attribute:" Grid.Column="11" Grid.Row="2" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Foreground="DarkGray"/>
         <ComboBox Name="Attribute" Grid.Column="11" Grid.Row="3" Grid.ColumnSpan="2" IsEditable="True" StaysOpenOnEdit="True" IsTextSearchEnabled="True" Style="{DynamicResource RoundComboBox}" VerticalAlignment="Top"/>
 
 
-        <Button Name="AddBtn" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,41,0,0" Padding="5" Click="AddButtonClick" Style="{DynamicResource RoundButton}" Grid.RowSpan="2">
+        <Button Name="AddBtn" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,0,0,0" Padding="5" Click="AddButtonClick" Style="{DynamicResource RoundButton}" >
             <Button.ContentTemplate>
                 <DataTemplate>
                     <Viewbox>
@@ -104,7 +104,7 @@
                 </DataTemplate>
             </Button.ContentTemplate>
         </Button>
-        <Button Name="ClearBtn" Grid.Column="6" Grid.Row="3" Grid.ColumnSpan="3" Margin="50,41,50,0" Padding="5" Click="ClearButtonClick" Style="{DynamicResource RoundButton}" Grid.RowSpan="2">
+        <Button Name="ClearBtn" Grid.Column="6" Grid.Row="4" Grid.ColumnSpan="3" Margin="50, 0,50,0" Padding="5" Click="ClearButtonClick" Style="{DynamicResource RoundButton}">
             <Button.ContentTemplate>
                 <DataTemplate>
                     <Viewbox>
@@ -113,7 +113,7 @@
                 </DataTemplate>
             </Button.ContentTemplate>
         </Button>
-        <Button Name="TableBtn" Grid.Column="9" Grid.Row="3" Grid.ColumnSpan="2" Margin="0,41,0,0" Padding="5" Click="TableButtonClick" Style="{DynamicResource RoundButton}" Grid.RowSpan="2">
+        <Button Name="TableBtn" Grid.Column="9" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,0,0,0" Padding="5" Click="TableButtonClick" Style="{DynamicResource RoundButton}">
             <Button.ContentTemplate>
                 <DataTemplate>
                     <Viewbox>

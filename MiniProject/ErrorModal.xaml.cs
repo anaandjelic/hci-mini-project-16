@@ -15,12 +15,12 @@ namespace MiniProject
     /// <summary>
     /// Interaction logic for Modal.xaml
     /// </summary>
-    public partial class Modal : Window
+    public partial class ErrorModal : Window
     {
         private readonly double screenWidth = SystemParameters.PrimaryScreenWidth;
         private readonly double screenHeight = SystemParameters.PrimaryScreenHeight;
 
-        public Modal(string message)
+        public ErrorModal(string message)
         {
             InitializeComponent();
 

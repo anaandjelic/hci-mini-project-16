@@ -57,7 +57,7 @@ namespace MiniProject
 
             SeriesCollection.Add(new LineSeries
             {
-                Title = $"{from}-{to}-{attribute}",
+                Title = $"{from}-{to}-{attribute[0]}",
                 Values = new ChartValues<double>(values),
                 PointGeometry = null,
                 LineSmoothness = 0,

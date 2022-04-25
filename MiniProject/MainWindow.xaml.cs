@@ -32,12 +32,14 @@ namespace MiniProject
         public event ClearData ClearEvent;
         public event AddData AddEvent;
 
-        private readonly double screenWidth = SystemParameters.PrimaryScreenWidth;
-        private readonly double screenHeight = SystemParameters.PrimaryScreenHeight;
+        private readonly double ScreenWidth = SystemParameters.PrimaryScreenWidth;
+        private readonly double ScreenHeight = SystemParameters.PrimaryScreenHeight;
 
-        private List<string> currencies = new List<string>();
-        private readonly List<String> intervals = new List<string> { "1min", "5min" , "15min", "30min", "60min", "Daily", "Weekly", "Monthly" };
-        private readonly List<String> attributes = new List<string> { "Open", "Close", "High", "Low" };
+        private List<string> Currencies = new List<string>();
+        private readonly List<String> Intervals = new List<string> { "1min", "5min" , "15min", "30min", "60min", "Daily", "Weekly", "Monthly" };
+        private readonly List<String> Attributes = new List<string> { "Open", "Close", "High", "Low" };
+
+        private string CurrentInterval;
 
         public MainWindow()
         {
@@ -45,8 +47,8 @@ namespace MiniProject
             InitializeComponent();
             InitializeComboboxes();
 
-            Left = screenWidth / 2 - Width / 2;
-            Top = screenHeight / 2 - Height / 2;
+            Left = ScreenWidth / 2 - Width / 2;
+            Top = ScreenHeight / 2 - Height / 2;
 
             lineChart = new LineChart();
             barChart = new BarChart();
@@ -66,18 +68,18 @@ namespace MiniProject
                 string intervalType = IntervalType.Text;
                 string attribute = Attribute.Text;
 
-                if (!currencies.Contains(FromCurrency.Text) ||
-                    !currencies.Contains(ToCurrency.Text) ||
-                    !intervals.Contains(intervalType) ||
-                    !attributes.Contains(attribute))
+                if (!Currencies.Contains(FromCurrency.Text) ||
+                    !Currencies.Contains(ToCurrency.Text) ||
+                    !Intervals.Contains(intervalType) ||
+                    !Attributes.Contains(attribute))
                 {
-                    Modal modal = new Modal("You have to enter valid values for all fields. Please try again.");
+                    ErrorModal modal = new ErrorModal("You have to enter valid values for all fields. Please try again.");
                     modal.ShowDialog();
                     return;
                 }
                 else if (fromCurrency == toCurrency)
                 {
-                    Modal modal = new Modal("Currencies can't be the same.\nPlease try again.");
+                    ErrorModal modal = new ErrorModal("Currencies can't be the same.\nPlease try again.");
                     modal.ShowDialog();
                     return;
                 }
@@ -92,12 +94,17 @@ namespace MiniProject
             }
             catch (NoValuesFoundException)
             {
-                Modal modal = new Modal("Looks like API hasn't returned any values. Please try again.");
+                ErrorModal modal = new ErrorModal("Looks like API hasn't returned any values. Please try again.");
                 modal.ShowDialog();
             }
             catch (APITimedOutException)
             {
-                Modal modal = new Modal("Looks like we reached our limit of 5 API calls per minute. Please try again later.");
+                ErrorModal modal = new ErrorModal("Looks like we reached our limit of 5 API calls per minute. Please try again later.");
+                modal.ShowDialog();
+            }
+            catch (Exception)
+            {
+                ErrorModal modal = new ErrorModal("Looks we had some trouble parsing the arguments. Please try again.");
                 modal.ShowDialog();
             }
         }
@@ -117,10 +124,10 @@ namespace MiniProject
 
         private void InitializeComboboxes()
         {
-            IntervalType.ItemsSource = intervals;
+            IntervalType.ItemsSource = Intervals;
             IntervalType.SelectedIndex = 0;
 
-            Attribute.ItemsSource = attributes;
+            Attribute.ItemsSource = Attributes;
             Attribute.SelectedIndex = 0;
 
             LoadCSVData();
@@ -137,12 +144,12 @@ namespace MiniProject
                     line = reader.ReadLine();
                     var values = line.Split(',');
 
-                    currencies.Add($"{values[0]} - {values[1]}");
+                    Currencies.Add($"{values[0]} - {values[1]}");
                 }
 
-                FromCurrency.ItemsSource = currencies;
+                FromCurrency.ItemsSource = Currencies;
                 FromCurrency.SelectedIndex = 0;
-                ToCurrency.ItemsSource = currencies;
+                ToCurrency.ItemsSource = Currencies;
                 ToCurrency.SelectedIndex = 0;
             }
         }
