@@ -39,11 +39,10 @@ namespace MiniProject
         private readonly List<String> Intervals = new List<string> { "1min", "5min" , "15min", "30min", "60min", "Daily", "Weekly", "Monthly" };
         private readonly List<String> Attributes = new List<string> { "Open", "Close", "High", "Low" };
 
-        private string CurrentInterval;
+        private string CurrentInterval = "";
 
         public MainWindow()
         {
-
             InitializeComponent();
             InitializeComboboxes();
 
@@ -84,6 +83,23 @@ namespace MiniProject
                     return;
                 }
 
+                if (intervalType != CurrentInterval &&
+                    CurrentInterval != "")
+                {
+                    ChoiceModal choiceModal = new ChoiceModal();
+                    choiceModal.ShowDialog();
+
+                    if (choiceModal.Choice == "Draw")
+                    {
+                        barChart.Clear();
+                        lineChart.Clear();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
                 List<DataPoint> data = DataFetcher.FetchData(fromCurrency, toCurrency, intervalType);
 
                 lineChart.AddData(fromCurrency, toCurrency, intervalType, attribute);
@@ -91,6 +107,7 @@ namespace MiniProject
                 LineXAxis.Labels = lineChart.XLabels;
                 BarXAxis.Labels = barChart.XLabels;
                 AddEvent?.Invoke();
+                CurrentInterval = intervalType;
             }
             catch (NoValuesFoundException)
             {
@@ -112,6 +129,7 @@ namespace MiniProject
         private void ClearButtonClick(object sender, RoutedEventArgs e)
         {
             ClearEvent?.Invoke();
+            CurrentInterval = "";
         }
 
         private void TableButtonClick(object sender, RoutedEventArgs e)

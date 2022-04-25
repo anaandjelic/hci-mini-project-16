@@ -1,0 +1,53 @@
+﻿<Window x:Class="MiniProject.ChoiceModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiniProject"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Title="Changed intervals" Height="200" Width="400" FontSize="15" Background="Transparent">
+    
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="RoundButton">
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5" />
+                </Style>
+            </Style.Resources>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+    </Window.Resources>
+
+    <Border CornerRadius="20" Background="White" BorderThickness="1" BorderBrush="Black">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" TextAlignment="Center" TextWrapping="Wrap">
+            Interval you chose does not match the interval currently displayed in the chart. 
+            You can choose to continue with graphs unchanged or draw a new graph with selected values.
+        </TextBlock>
+
+        <Button Grid.Column="1" Grid.Row="3" Padding="5" Content="Continue" Click="ContButtonClick" Style="{DynamicResource RoundButton}" />
+        <Button Grid.Column="3" Grid.Row="3" Padding="5" Content="Draw new" Click="DrawButtonClick" Style="{DynamicResource RoundButton}" />
+
+    </Grid>
+</Border>
+</Window>
