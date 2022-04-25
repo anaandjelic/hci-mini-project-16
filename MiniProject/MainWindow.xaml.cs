@@ -28,13 +28,25 @@ namespace MiniProject
     {
         public LineChart lineChart { get; set; }
         public BarChart barChart { get; set; }
+
         public event ClearData ClearEvent;
         public event AddData AddEvent;
 
+        private readonly double screenWidth = SystemParameters.PrimaryScreenWidth;
+        private readonly double screenHeight = SystemParameters.PrimaryScreenHeight;
+
+        private List<string> currencies = new List<string>();
+        private readonly List<String> intervals = new List<string> { "1min", "5min" , "15min", "30min", "60min", "Daily", "Weekly", "Monthly" };
+        private readonly List<String> attributes = new List<string> { "Open", "Close", "High", "Low" };
+
         public MainWindow()
         {
+
             InitializeComponent();
             InitializeComboboxes();
+
+            Left = screenWidth / 2 - Width / 2;
+            Top = screenHeight / 2 - Height / 2;
 
             lineChart = new LineChart();
             barChart = new BarChart();
@@ -47,16 +59,47 @@ namespace MiniProject
 
         private void AddButtonClick(object sender, RoutedEventArgs e)
         {
-            String fromCurrency = FromCurrency.Text.Substring(0, 3);
-            String toCurrency = ToCurrency.Text.Substring(0,3);
-            String intervalType = IntervalType.Text;
-            String attribute = Attribute.Text;
+            try
+            {
+                string fromCurrency = FromCurrency.Text.Substring(0, 3);
+                string toCurrency = ToCurrency.Text.Substring(0, 3);
+                string intervalType = IntervalType.Text;
+                string attribute = Attribute.Text;
 
-            lineChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
-            barChart.AddData(fromCurrency.Substring(0,3), toCurrency.Substring(0,3), intervalType, attribute);
-            LineXAxis.Labels = lineChart.XLabels;
-            BarXAxis.Labels = barChart.XLabels;
-            AddEvent?.Invoke();
+                if (!currencies.Contains(FromCurrency.Text) ||
+                    !currencies.Contains(ToCurrency.Text) ||
+                    !intervals.Contains(intervalType) ||
+                    !attributes.Contains(attribute))
+                {
+                    Modal modal = new Modal("You have to enter valid values for all fields. Please try again.");
+                    modal.ShowDialog();
+                    return;
+                }
+                else if (fromCurrency == toCurrency)
+                {
+                    Modal modal = new Modal("Currencies can't be the same.\nPlease try again.");
+                    modal.ShowDialog();
+                    return;
+                }
+
+                List<DataPoint> data = DataFetcher.FetchData(fromCurrency, toCurrency, intervalType);
+
+                lineChart.AddData(fromCurrency, toCurrency, intervalType, attribute);
+                barChart.AddData(fromCurrency, toCurrency, intervalType, attribute);
+                LineXAxis.Labels = lineChart.XLabels;
+                BarXAxis.Labels = barChart.XLabels;
+                AddEvent?.Invoke();
+            }
+            catch (NoValuesFoundException)
+            {
+                Modal modal = new Modal("Looks like API hasn't returned any values. Please try again.");
+                modal.ShowDialog();
+            }
+            catch (APITimedOutException)
+            {
+                Modal modal = new Modal("Looks like we reached our limit of 5 API calls per minute. Please try again later.");
+                modal.ShowDialog();
+            }
         }
 
         private void ClearButtonClick(object sender, RoutedEventArgs e)
@@ -74,24 +117,9 @@ namespace MiniProject
 
         private void InitializeComboboxes()
         {
-            List<String> intervals = new List<String>();
-            List<String> attributes = new List<string>();
-
-            intervals.Add("1min");
-            intervals.Add("5min");
-            intervals.Add("15min");
-            intervals.Add("30min");
-            intervals.Add("60min");
-            intervals.Add("Daily");
-            intervals.Add("Weekly");
-            intervals.Add("Monthly");
             IntervalType.ItemsSource = intervals;
             IntervalType.SelectedIndex = 0;
 
-            attributes.Add("Open");
-            attributes.Add("Close");
-            attributes.Add("High");
-            attributes.Add("Low");
             Attribute.ItemsSource = attributes;
             Attribute.SelectedIndex = 0;
 
@@ -102,7 +130,6 @@ namespace MiniProject
         {
             using (var reader = new StreamReader("../../../physical_currency_list.csv"))
             {
-                List<String> currencies = new List<String>();
                 var line = reader.ReadLine();
 
                 while (!reader.EndOfStream)

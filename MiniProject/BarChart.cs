@@ -57,7 +57,7 @@ namespace MiniProject
 
             SeriesCollection.Add(new ColumnSeries
             {
-                Title = $"{from}-{to}",
+                Title = $"{from}-{to}-{attribute}",
                 Values = new ChartValues<double>(values),
             });
 

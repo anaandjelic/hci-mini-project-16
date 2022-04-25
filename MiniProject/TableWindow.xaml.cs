@@ -17,10 +17,15 @@ namespace MiniProject
     /// </summary>
     public partial class TableWindow : Window
     {
+        private readonly double screenWidth = SystemParameters.PrimaryScreenWidth;
+        private readonly double screenHeight = SystemParameters.PrimaryScreenHeight;
 
         public TableWindow()
         {
             InitializeComponent();
+
+            Left = screenWidth / 2 - Width / 2;
+            Top = screenHeight / 2 - Height / 2;
 
             currenciePairesCB.ItemsSource = DataFetcher.GetCacheKeys();
         }

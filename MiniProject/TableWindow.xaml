@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:MiniProject"
         mc:Ignorable="d"
         Title="Table of data" Height="528" Width="1004"
-        Background="White" Icon="/ikonica.png" ResizeMode="NoResize">
+        Background="White" Icon="/minichart.png" ResizeMode="NoResize">
     <Grid>
         <StackPanel>
             <Label Height="30" Width="164" HorizontalAlignment="Center" FontSize="13" FontWeight="DemiBold">Choose pair of currencies:</Label>
             <ComboBox x:Name="currenciePairesCB" Width="184" Height="23" SelectionChanged="currenciePairesCB_SelectionChanged"/>
             <Label></Label>
-            <DataGrid x:Name="dataTable" Height="411" Width="960" CanUserResizeRows="False" CanUserResizeColumns="False">
+            <DataGrid x:Name="dataTable" Height="411" Width="960" CanUserResizeRows="False" CanUserResizeColumns="False" IsReadOnly="True">
                 <!--Stil hedinga-->
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">

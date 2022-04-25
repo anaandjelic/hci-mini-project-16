@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="ikonica.png" />
-    <None Remove="moneyIMG.png" />
+    <None Remove="error.png" />
+    <None Remove="minichart.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="ikonica.png" />
-    <Resource Include="moneyIMG.png" />
+    <Resource Include="error.png" />
+    <Resource Include="minichart.png" />
   </ItemGroup>
 
 </Project>

@@ -45,6 +45,9 @@ namespace MiniProject
             {
                 string response = client.DownloadString(new Uri(queryUrlString));
 
+                if (response.Contains("Thank you for using Alpha Vantage!"))
+                    throw new APITimedOutException();
+
                 List<DataPoint> dataPoints = new List<DataPoint>();
                 foreach (string entry in response.Split("\r\n").Skip(1))
                 {
@@ -62,6 +65,9 @@ namespace MiniProject
                         Close = Double.Parse(tokens[4])
                     });
                 }
+
+                if (!dataPoints.Any())
+                    throw new NoValuesFoundException();
 
                 dataPoints.Reverse();
                 _cachedData.Add(cachedDataKey, dataPoints);
